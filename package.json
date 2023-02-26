@@ -30,6 +30,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
     "eslint-config-next": "^13.2.1",
     "eslint-config-prettier": "^8.6.0",
@@ -38,7 +39,9 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.4"
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "tailwindcss": "^3.2.7"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
