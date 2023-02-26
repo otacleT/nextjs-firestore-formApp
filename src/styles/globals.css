@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@layer components {
+  .loading::before {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    content: '';
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top-color: #000;
+    margin-right: 10px;
+  }
+}
