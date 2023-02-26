@@ -1,6 +1,6 @@
 import {zodResolver} from '@hookform/resolvers/zod'
 import type {NextPage} from 'next'
-import {useCallback} from 'react'
+import {useCallback, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {z} from 'zod'
 
@@ -27,6 +27,7 @@ const schema = z.object({
 })
 
 const Home: NextPage = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const {registerUser} = useRegister()
   const {checkRegistered} = useCheckRegistered()
   const {
@@ -39,6 +40,8 @@ const Home: NextPage = () => {
 
   const onSubmit = useCallback(
     async (data: UserInfo) => {
+      setIsLoading(true)
+
       // 入力された値が既に登録済みかどうかを判定する
       const isRegistered = await checkRegistered(data).catch(() => {
         alert('問題が発生しました。時間をおいて再度お試しください。')
@@ -63,6 +66,8 @@ const Home: NextPage = () => {
             alert('問題が発生しました。時間をおいて再度お試しください。')
           })
       }
+
+      setIsLoading(false)
     },
     [registerUser, checkRegistered]
   )
@@ -84,7 +89,9 @@ const Home: NextPage = () => {
         />
         <p className='text-sm text-red-500 mt-2'>{errors.walletAddress?.message}</p>
         <button
-          className='w-full h-10 flex items-center justify-center bg-black text-white mt-7'
+          className={`${
+            isLoading && 'loading pointer-events-none'
+          } w-full h-10 flex items-center justify-center bg-black text-white mt-7`}
           type='submit'
         >
           登録する
