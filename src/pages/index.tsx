@@ -67,17 +67,28 @@ const Home: NextPage = () => {
     [registerUser, checkRegistered]
   )
   return (
-    <main>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder='メールアドレスをご入力ください' type='email' {...register('email')} />
-        <p>{errors.email?.message}</p>
+    <main className='w-full max-w-[540px] h-screen flex items-center justify-center mx-auto px-5'>
+      <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
         <input
+          className='w-full block text-sm border border-black p-2'
+          placeholder='メールアドレスをご入力ください'
+          type='email'
+          {...register('email')}
+        />
+        <p className='text-sm text-red-500 mt-2'>{errors.email?.message}</p>
+        <input
+          className='w-full block text-sm border border-black p-2 mt-5'
           placeholder='ウォレットアドレス(0x..)をご入力ください'
           type='text'
           {...register('walletAddress')}
         />
-        <p>{errors.walletAddress?.message}</p>
-        <button type='submit'>登録する</button>
+        <p className='text-sm text-red-500 mt-2'>{errors.walletAddress?.message}</p>
+        <button
+          className='w-full h-10 flex items-center justify-center bg-black text-white mt-7'
+          type='submit'
+        >
+          登録する
+        </button>
       </form>
     </main>
   )
