@@ -6,7 +6,6 @@ import {z} from 'zod'
 
 import {useCheckRegistered} from '@/hook/useCheckRegistered'
 import {useRegister} from '@/hook/useRegister'
-import type {UserInfo} from '@/type/UserInfo'
 
 const regex = /^0x/
 
@@ -34,12 +33,12 @@ const Home: NextPage = () => {
     formState: {errors},
     handleSubmit,
     register,
-  } = useForm<UserInfo>({
+  } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
   })
 
   const onSubmit = useCallback(
-    async (data: UserInfo) => {
+    async (data: z.infer<typeof schema>) => {
       setIsLoading(true)
 
       // 入力された値が既に登録済みかどうかを判定する
